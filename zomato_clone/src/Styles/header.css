@@ -1,0 +1,157 @@
+.user-head {
+    width: 100%;
+}
+
+.Path {
+    height: 0;
+    margin: 50px 8.8px 8px 0;
+    border: solid 1px #c7c7c7;
+}
+
+.user-button-gp {
+    width: 100%;
+    margin-right: 10px;
+    color: white;
+    font-weight: bold;
+    margin-top: 4px;
+    float: right;
+}
+
+.user-login {
+    display: inline-block;
+    position: absolute;
+    z-index: 0;
+    height: 23px;
+    margin-left: 77%;
+    margin-top: 17px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.56;
+    letter-spacing: normal;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.close-btnH {
+    display: inline-block;
+    padding-left: 173px;
+    font-size: 18px;
+    color: black;
+}
+
+.haveaccount {
+    margin: 10px 3px 10px 76px;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.56;
+    letter-spacing: normal;
+    text-align: left;
+    color: #192f60;
+}
+
+.haveaccountL {
+    margin: 10px 3px 10px 0px;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.56;
+    letter-spacing: normal;
+    text-align: left;
+    color: #192f60;
+}
+
+.googlebtn {
+    padding: 5px 29px 5px 2px!important;
+    margin-bottom: 10px;
+}
+
+.user-signup {
+    display: inline-block;
+    position: absolute;
+    min-width: 90px;
+    max-width: 250px;
+    z-index: 0;
+    border: 1px solid white;
+    left: 81%;
+    margin-top: 7px;
+    height: 46px;
+    padding: 9px 10px 7px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: white;
+}
+
+.Acc-name {
+    font-size: 20px;
+}
+
+.text-areaH {
+    height: 40px;
+}
+
+.NameH {
+    width: 55px;
+    height: 23px;
+    margin: 7px 350px 3px 6px;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.56;
+    letter-spacing: normal;
+    text-align: left;
+    color: #192f60;
+}
+
+.loginModal {
+    display: inline-block;
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.53;
+    letter-spacing: normal;
+    text-align: left;
+    color: #192f60;
+}
+
+@media only screen and (max-width: 600px) {
+    .user-login {
+        display: inline-block;
+        position: absolute;
+        z-index: 0;
+        width: 43px;
+        height: 23px;
+        margin-left: 61%;
+        margin-top: 23px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.56;
+        letter-spacing: normal;
+        text-decoration: none;
+        color: #ffffff;
+    }
+    .user-signup {
+        display: inline-block;
+        position: absolute;
+        left: 324px;
+        top: 10px;
+        font-size: x-small;
+        z-index: 0;
+        border: 1px solid white;
+        width: 137px;
+        margin-left: 10px;
+        height: 38px;
+        padding: 10px 0px 0px 9px;
+        border-radius: 3px;
+        text-decoration: none;
+        color: white;
+    }
+}
