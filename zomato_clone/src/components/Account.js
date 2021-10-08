@@ -14,8 +14,6 @@ class Account extends React.Component {
             orders: [],
             restaurants:[],
             resid:[],
-            
-            
 
         }
     }
@@ -52,7 +50,8 @@ class Account extends React.Component {
     
 
     render() {
-        const { user, orders, } = this.state;
+        const { user, orders } = this.state;
+      
 
         return (
             <header>
@@ -64,10 +63,13 @@ class Account extends React.Component {
                     <div className="container-fluid header"></div>
                     <div className="container-fluid Abackground"></div>
                     <div className="col-xl-12 col-md-12 col-sm-12 mt-4 mb-3">
+                      <div>
+                         
+                      </div>
+                      
+                      
+                      
                         <div>
-
-
-
                             { user.map((item) => {
                                 return <div>
                                     <div className="Acclogo">{item.firstname.charAt(0)}{item.lastname.charAt(0)}

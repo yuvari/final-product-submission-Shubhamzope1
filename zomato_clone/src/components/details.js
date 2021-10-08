@@ -179,7 +179,7 @@ class Details extends React.Component {
     }
     handleorders = () => {
         const { email, password, firstname, lastname, phNumber, address, menuItems, subTotal, restaurantId,resname } = this.state;
-        const signUpObj = {
+        const orderObj = {
             email: email,
             password: password,
             firstname: firstname,
@@ -195,30 +195,33 @@ class Details extends React.Component {
             url: 'http://localhost:2020/orders',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            data: signUpObj
+            data: orderObj
 
         })
             .then(response => {
-                if (response.data.message == 'User ordered Sucessfully') {
-
-                    this.setState({
-                        email: '',
-                        password: '',
-                        firstname: '',
-                        lastname: '',
-                        phNumber: '',
-                        address: '',
-                        menuItems: [],
-                        subTotal: 0,
-                        restaurantId: '',
-                        resname:''
-
-                    });
-
-                }
+                if (!email || !firstname || !lastname || !address || !phNumber) {
+                    alert(response.data.message);
+                 }
+               else{ 
+                this.setState({
+                    email:email,
+                    password: password,
+                    firstname:firstname,
+                    lastname: lastname,
+                    phNumber: phNumber,
+                    address: address,
+                    menuItems: [],
+                    menuItems:menuItems,
+                    subTotal:subTotal,
+                    restaurantId: restaurantId,
+                    resname:resname,
+                    paymentmodalisopen: true 
+                });
+            }
+               
             })
             .catch(err => console.log(err))
-        this.setState({ paymentmodalisopen: true })
+
 
     }
 

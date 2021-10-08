@@ -5,7 +5,8 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
 import alert from 'alert';
-import{withRouter} from 'react-router-dom'
+import{withRouter} from 'react-router-dom';
+import Account from './Account'
 
 const customStyles = {
     content: {
@@ -35,10 +36,11 @@ class Header extends React.Component {
             phNumber:'',
             address:'',
             user:[],
-        
+            profileObj: []
+
         }
     }
-   
+
 
 
    handleaccountDetail =(email) =>{
@@ -50,7 +52,7 @@ class Header extends React.Component {
         this.setState({ [state]: value });
     }
 
- 
+
 
 
     handleInputChange = (event,state)=>{
@@ -60,7 +62,7 @@ class Header extends React.Component {
         const {  email, password, firstname, lastname,phNumber,address, } = this.state;
         const signUpObj = {
             email:email,
-            password:password, 
+            password:password,
             firstname:firstname,
             lastname:lastname,
             phNumber:phNumber,
@@ -71,45 +73,45 @@ class Header extends React.Component {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             data: signUpObj
-            
+
         })
         .then(response => {
             if (response) {
                 this.setState({
-                    
-                    email: '',
-                    password: '',
-                    firstname: '',
-                    lastname: '',
-                    phNumber:'',
-                    address:'',
+
+                    email: email,
+                    password: password,
+                    firstname: firstname,
+                    lastname: lastname,
+                    phNumber:phNumber,
+                    address:address,
                     });
                     alert(response.data.message)
-                  
+
             }
-           
+
         })
         .catch(err => console.log(err))
-  
+
         this.setState({  AccModalIsOpen: false,
             ANOTHERModalIsOpen:true})
-            
+
     }
     responseGoogle = (response) => {
-      
-        this.setState({ isLoggedIn: true, loggedInUser: response.profileObj.name, email: response.profileObj.email, user:response.profileObj, loginModalIsOpen: false })
+
+        this.setState({ isLoggedIn: true, loggedInUser: response.profileObj.name, email: response.profileObj.email, profileObj:response.profileObj, loginModalIsOpen: false })
 
         console.log(response)
 
     }
-    
+
     responseFacebook(response) {
-        this.setState({ loggedInUser: response.name, isLoggedIn: true, loginModalIsOpen: false });
+        // this.setState({ loggedInUser: response.name, isLoggedIn: true, loginModalIsOpen: false })
         console.log(response)
       }
 
       handleANOTHER = () => {
-        this.setState({ ANOTHERModalIsOpen: true, loginModalIsOpen: false, AccModalIsOpen: false });
+        this.setState({ ANOTHERModalIsOpen: true, loginModalIsOpen: false, AccModalIsOpen: false })
     }
 
     handleAcc = () => {
@@ -122,13 +124,13 @@ class Header extends React.Component {
     }
 
     handleLogedin = (event) => {
-       
-        const { email, password,obj} = this.state;
+
+        const { email, password} = this.state;
         const loginObj = {
             email: email,
             password: password,
 
-        
+
         };
         axios({
             method: 'POST',
@@ -139,21 +141,22 @@ class Header extends React.Component {
             .then(response => {
                 this.setState({
                     isLoggedIn: response.data.isauthenticateduser,
-                    email: '',
-                    password: '',
+                    email: email,
+                    password: password,
                     loggedInUser: email,
                     ANOTHERModalIsOpen: false,
                     email:email,
-                    
-                  
+
+
+
                 });
-               
+
                 alert(response.data.message);
-                
-              
+
+
             })
             .catch(err => console.log(err))
-            
+
     }
 
     handleLogin = () => {
@@ -161,23 +164,24 @@ class Header extends React.Component {
     }
 
 
-  
+
     render() {
-        const { loginModalIsOpen, isLoggedIn, loggedInUser, AccModalIsOpen,ANOTHERModalIsOpen,user,email } = this.state;
+        const { loginModalIsOpen,isLoggedIn, loggedInUser, AccModalIsOpen,ANOTHERModalIsOpen,user,email } = this.state;
         return (
             <div>
+
                 <div >
                     {isLoggedIn ? <div className="user-button-gp">
-                   
+
                          <div className="user-head">
-                        
+
                          <div className="user-signup" onClick={()=>this.handleaccountDetail(email)} key={email}>{loggedInUser}</div>
-                    
+
                             <div className="user-login " onClick={this.userLogout}>Logout</div>
 
                         </div>
 
-                       
+
                     </div> :
                         <div className="user-button-gp">
                             <div className="user-head">
@@ -187,14 +191,14 @@ class Header extends React.Component {
 
                         </div>}
                 </div>
-                
+
                 <Modal
                     isOpen={loginModalIsOpen}
                     style={customStyles}
                     ariaHideApp={false}
                 >
                     <div >
-                    
+
                         <div className="loginModal">Login</div>
                         <div className="fas fa-times close-btnH"  onClick={() => this.handleCloseModal('loginModalIsOpen', false)}></div>
                        <br/>
@@ -213,11 +217,11 @@ class Header extends React.Component {
                             appId="237252288338754"
                             fields="name,email,picture"
                             callback={this.responseFacebook}
-                    
+
                         />
                         </div>
                         </div>
-                       
+
                         <div className="Path"></div>
                         <div>
                             <span className="haveaccountL">Already have an account?<span style={{color:'orange'}}  onClick={this.handleANOTHER}>Login</span></span>
@@ -245,7 +249,7 @@ class Header extends React.Component {
                             <label className="NameH">Address</label>
                             <textarea type="text" placeholder="enter your address" className="form-control text-areaH" onChange={(event) => this.handleInputChange(event, 'address')} />
                             <button className="btn btn-danger PROCEED" onClick={this.handleSignUp}>Register </button>
-                            
+
                         </div>
                         <div className="Path"></div>
                         <div>
@@ -271,7 +275,7 @@ class Header extends React.Component {
                     </div>
                     </div>
                     </Modal>
-                
+
             </div>)}
 }
 export default withRouter(Header);
