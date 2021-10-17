@@ -6,7 +6,6 @@ import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
 import alert from 'alert';
 import{withRouter} from 'react-router-dom';
-import Account from './Account'
 
 const customStyles = {
     content: {
@@ -16,7 +15,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        border: 'solid 1px brown'
+        borderRadius:'6px',
+      
     },
 };
 
@@ -43,8 +43,8 @@ class Header extends React.Component {
 
 
 
-   handleaccountDetail =(email) =>{
-    this.props.history.push(`/account?email=${email}`);
+   handleaccountDetail =(email,firstname) =>{
+    this.props.history.push(`/account?email=${email}&firstname=${firstname}`);
     }
 
 
@@ -99,14 +99,14 @@ class Header extends React.Component {
     }
     responseGoogle = (response) => {
 
-        this.setState({ isLoggedIn: true, loggedInUser: response.profileObj.name, email: response.profileObj.email, profileObj:response.profileObj, loginModalIsOpen: false })
+        this.setState({ isLoggedIn: true, loggedInUser: response.profileObj.name,firstname: response.profileObj.givenName, email: response.profileObj.email, profileObj:response.profileObj, loginModalIsOpen: false })
 
         console.log(response)
 
     }
 
-    responseFacebook(response) {
-        // this.setState({ loggedInUser: response.name, isLoggedIn: true, loginModalIsOpen: false })
+    responseFacebook=(response)=> {
+         this.setState({ loggedInUser: response.name,email: response.email, isLoggedIn: true, loginModalIsOpen: false })
         console.log(response)
       }
 
