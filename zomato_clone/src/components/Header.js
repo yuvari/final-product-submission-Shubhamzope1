@@ -43,8 +43,8 @@ class Header extends React.Component {
 
 
 
-   handleaccountDetail =(email,firstname) =>{
-    this.props.history.push(`/account?email=${email}&firstname=${firstname}`);
+   handleaccountDetail =(email) =>{
+    this.props.history.push(`/account?email=${email}`);
     }
 
 
